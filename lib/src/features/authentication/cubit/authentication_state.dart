@@ -22,8 +22,10 @@ class AuthenticationSuccess extends AuthenticationState {
 }
 
 class AuthenticationError extends AuthenticationState {
-  String errorMessage;
-  AuthenticationError(this.errorMessage);
+  final String errorMessage;
+
+  const AuthenticationError(this.errorMessage);
+
   @override
   List<Object> get props => [];
 }

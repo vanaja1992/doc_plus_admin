@@ -49,6 +49,8 @@ class FormValidationHelper {
       return AppStrings.passwordEmptyErrorMessage;
     } else if (password.length < 5) {
       return AppStrings.passwordIncorrectErrorMessage;
+    } else if (!AppStrings.passwordRegex.hasMatch(password)) {
+      return AppStrings.passwordIncorrectErrorMessage;
     } else {
       return null;
     }

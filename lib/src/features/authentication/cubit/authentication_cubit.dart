@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../core/helpers/authentication_helpers.dart';
 import '../../../core/models/response_model.dart';
-import '../model/UserModel.dart';
+import '../model/user_model.dart';
 
 part 'authentication_state.dart';
 

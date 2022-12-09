@@ -8,9 +8,11 @@ import 'package:doc_plus_admin/src/core/theme/app_text_theme.dart';
 import 'package:doc_plus_admin/src/core/theme/input_decoration_theme.dart';
 import 'package:doc_plus_admin/src/core/helpers/form_validation_helper.dart';
 import 'package:doc_plus_admin/src/features/authentication/cubit/authentication_cubit.dart';
+import 'package:doc_plus_admin/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -25,6 +27,8 @@ class _LoginPageState extends State<LoginPage> {
       TextEditingController(text: "admin@docplus.com");
   TextEditingController passwordController =
       TextEditingController(text: "@dminPlus2020#");
+  bool isPasswordHidden = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,12 +79,26 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           TextFormField(
                             controller: passwordController,
+                            obscureText: isPasswordHidden,
                             decoration: InputDecorationThemes
                                 .formInputDecoration
                                 .copyWith(
                               labelText: AppStrings.password_,
+                              suffix: IconButton(
+                                constraints:
+                                    const BoxConstraints(maxHeight: 40),
+                                onPressed: () {
+                                  setState(() {
+                                    isPasswordHidden = !isPasswordHidden;
+                                  });
+                                },
+                                icon: Icon(isPasswordHidden
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                                iconSize: 15.0,
+                                splashRadius: 10.0,
+                              ),
                             ),
-                            obscureText: true,
                             validator: (val) {
                               return FormValidationHelper.validatePassword(val);
                             },
@@ -94,13 +112,20 @@ class _LoginPageState extends State<LoginPage> {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: InkWell(
-                        child: Text(
-                          AppStrings.forgotPassword,
-                          style: AppTextTheme.quotes,
+                        child: TextButton(
+                          child: Text(
+                            AppStrings.forgotPassword,
+                            style: AppTextTheme.quotes,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              navigateResetPasswordPage();
+                            });
+                          },
                         ),
-                        onTap: () {
-                          navigateResetPasswordPage();
-                        },
+                        // onTap: () {
+                        //   navigateResetPasswordPage();
+                        // },
                       ),
                     ),
                   ),
@@ -111,7 +136,10 @@ class _LoginPageState extends State<LoginPage> {
                     listener: (_, state) {
                       if (state is AuthenticationInitial ||
                           state is AuthenticationLoading) {
-                        EasyLoading.show(status: AppStrings.loading);
+                        Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Lottie.asset(AppAssets.loginAnimation,
+                                width: 100, height: 60, fit: BoxFit.fill));
                       } else if (state is AuthenticationError) {
                         EasyLoading.dismiss();
                         PopupMessageToast.showMessageToast(state.errorMessage);
@@ -122,24 +150,33 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     builder: (_, state) {
                       if (state is AuthenticationLoading) {
-                        return Container();
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Lottie.asset(AppAssets.loginAnimation,
+                                  width: 100, height: 60, fit: BoxFit.fill)),
+                        );
                       } else {
-                        return AppButton(
-                            title: AppStrings.login,
-                            onTap: () {
-                              if (!(_formKey.currentState?.validate() ??
-                                  false)) {
-                                return;
-                              }
-                              context.read<AuthenticationCubit>().loginUser(
-                                  emailController.toString(),
-                                  passwordController.toString());
-                            });
+                        return Container(
+                            constraints: const BoxConstraints.tightFor(
+                                width: 123, height: 60),
+                            child: AppButton(
+                                title: AppStrings.login,
+                                onTap: () {
+                                  if (!(_formKey.currentState?.validate() ??
+                                      false)) {
+                                    return;
+                                  }
+                                  context.read<AuthenticationCubit>().loginUser(
+                                      emailController.text.toString(),
+                                      passwordController.text.toString());
+                                }));
                       }
                     },
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 30,
                   ),
                   Center(
                     child: Row(
@@ -153,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: InkWell(
                             child: Text(
                               AppStrings.registerNow,
@@ -175,15 +212,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void navigatePage() {
-    // Navigator.pushReplacement(context,
-    //     MaterialPageRoute(builder: (context) => const SubscriptionPage()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const HomePage()));
   }
 
   void navigateSignupPage() {
-    // Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //         builder: (context) => const RegistrationPage()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const HomePage()));
   }
 
   void clearField() {

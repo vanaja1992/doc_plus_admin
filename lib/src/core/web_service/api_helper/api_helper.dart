@@ -17,8 +17,8 @@ class ApiHelper {
   //  new Dio with a BaseOptions instance.
   static final options = BaseOptions(
     baseUrl: 'http://15.206.27.26/',
-    connectTimeout: 5000,
-    receiveTimeout: 3000,
+    connectTimeout: 60000,
+    receiveTimeout: 60000,
   );
   Dio dio = Dio(options);
 
@@ -56,16 +56,20 @@ class ApiHelper {
   Future<ResponseModel> sendPostRequest(String endpoint, dynamic body,
       {Map<String, dynamic>? query, Map<String, dynamic>? headers}) async {
     try {
-      Map<String,dynamic> mHeaders= {};
-      if(headers !=null){
+      Map<String, dynamic> mHeaders = {};
+      if (headers != null) {
         mHeaders.addAll(headers);
       }
-      mHeaders.addAll(await getAuthHead());
+      var authHeaders = await getAuthHead();
+      if (authHeaders != null) {
+        mHeaders.addAll(authHeaders);
+      }
+
       Response response = await dio.post(endpoint,
           data: body,
           queryParameters: query,
           options: Options(
-            headers: mHeaders,
+              headers: mHeaders,
               responseType: ResponseType.json,
               contentType: "application/json"));
       ResponseModel responseModel = ResponseModel.fromJson(response.data);

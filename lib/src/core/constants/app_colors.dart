@@ -10,7 +10,8 @@ class AppColors{
   ///7. ImageDecorationColor
 
   //Main Colors
-  static const Color primaryColor = Colors.blueAccent;
+  static const Color primaryColor = Color(0xFF35ABAF);
+
   //background Colors
   static const Color backgroundColor = Colors.white;
   static const Color appColorTransparent = Colors.transparent;

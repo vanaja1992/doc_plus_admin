@@ -10,28 +10,29 @@ class AppStrings{
   ///Order page
   ///Database
   //Core
-  String appName= "DOC PLUS";
+  String appName = "DOC PLUS";
 
   //Global
-  static const String home = "My Pizza";
-  static const String orders = "Orders";
-  static const String cart = "My Cart";
+  static const String home = "DOC PLUS";
+  static const String subscription = "Subscription";
+  static const String clinic = "Clinic";
   static const String profile = "Profile";
-  static const String quotes1 ="The care you care about";
-  static const String quotes2 ="Healthcare for life";
+  static const String quotes1 = "The care you care about";
+  static const String quotes2 = "Healthcare for life";
 
   //Login Page
-  static const String login ="Login";
+  static const String login = "Login";
   static const String helloTitle = "Hello";
   static const String signTitle = "Sign into your account";
   static const String username = "Username";
   static const String password_ = "Password";
   static const String forgotPassword = "Forgot Password?";
   static const String loginButton = "Login";
-  static const String newlogintext = "Don't have an account?";
+  static const String newlogintext = "New to Doc Plus?";
   static const String registerNow = "Register Now";
   static const String errorMessage = "Invalid username or password";
   static const String loading = "Loading";
+
 //Signup Page
 
   static const String signupTitle = "Register";
@@ -51,7 +52,8 @@ class AppStrings{
   static const String emailValidErrorMessage = "Please enter a valid email address";
   static const String emailIncorrectErrorMessage = "Invalid email address";
   static const String passwordEmptyErrorMessage = "Please enter password";
-  static const String passwordValidErrorMessage = "Please enter a valid password";
+  static const String passwordValidErrorMessage =
+      "Please enter a valid password";
   static const String passwordIncorrectErrorMessage = "Invalid password";
   static const String userdEmptyErrorMessage = "Please enter username";
   static const String userIncorrectErrorMessage = "Invalid username";
@@ -61,13 +63,17 @@ class AppStrings{
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   static RegExp unameRegex = RegExp('[a-zA-Z]');
   static RegExp phoneRegex = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
+  static RegExp passwordRegex =
+      RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@%^&*-]).{8,}");
 
 //Pizza
   // Pizza Repository
   static const String pizzaErrorMessage = "Unable to fetch the pizza detials";
+
   // Pizza Data Viewing
   static const String pizzaErrorViewMessage = "No Details available!!!";
   static const String viewMore = "View";
+
   //Pizza Details Page
   static const String sizeChart = "Size";
   static const String restaurantName = "Restaurant Name";
