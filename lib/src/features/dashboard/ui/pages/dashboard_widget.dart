@@ -60,7 +60,7 @@ class DashboardWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -174,10 +174,10 @@ class DashboardWidget extends StatelessWidget {
               ),
               SingleChildScrollView(
                 child: Column(
-                  children: [
+                  children: const [
                     Card(
                       elevation: 24,
-                      margin: const EdgeInsets.symmetric(horizontal: 13),
+                      margin: EdgeInsets.symmetric(horizontal: 13),
                       child: ListTile(
                         title: Text(
                             "New clinic added , please check the updates on it",
@@ -190,7 +190,7 @@ class DashboardWidget extends StatelessWidget {
                     ),
                     Card(
                       elevation: 24,
-                      margin: const EdgeInsets.symmetric(horizontal: 13),
+                      margin: EdgeInsets.symmetric(horizontal: 13),
                       child: ListTile(
                         title: Text(
                             "New clinic added , please check the updates on it",
@@ -203,7 +203,7 @@ class DashboardWidget extends StatelessWidget {
                     ),
                     Card(
                       elevation: 24,
-                      margin: const EdgeInsets.symmetric(horizontal: 13),
+                      margin: EdgeInsets.symmetric(horizontal: 13),
                       child: ListTile(
                         title: Text(
                             "New clinic added , please check the updates on it",
