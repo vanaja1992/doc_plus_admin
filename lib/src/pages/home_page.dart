@@ -1,4 +1,5 @@
 import 'package:doc_plus_admin/src/core/assets/app_assets.dart';
+import 'package:doc_plus_admin/src/core/common_widgets/navigationDrawer.dart';
 import 'package:doc_plus_admin/src/core/constants/app_colors.dart';
 import 'package:doc_plus_admin/src/core/constants/app_string.dart';
 import 'package:doc_plus_admin/src/features/clinic/ui/pages/clinic_widget.dart';
@@ -57,6 +58,7 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+      drawer: const NavigationDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
         selectedItemColor: AppColors.bottomNavLabel,
